@@ -1,0 +1,36 @@
+﻿<TelerikDropDownList Data="@Data" @bind-Value="@SelectedValue" Enabled="@IsEnabled"/>
+<TelerikMultiSelect Data="@SelectData"
+                    TextField="Text"
+                    ValueField="TheValue"
+                    OnChange="@SelectChange"
+                    @bind-Value="@SelectValue"/>
+
+@code {
+
+    private string @SelectedValue { get; set; } = "One";
+
+    private List<string> Data { get; set; } =
+    [
+        "One",
+        "Two",
+        "Three"
+    ];
+
+    private List<Home.MyData> SelectData { get; set; } =
+    [
+        new Home.MyData { Text = "One", TheValue = "1" },
+        new Home.MyData { Text = "Two", TheValue = "2" },
+        new Home.MyData { Text = "Three", TheValue = "3" }
+    ];
+
+    private List<string> SelectValue { get; set; } = [];
+
+    private bool IsEnabled = false;
+
+
+    private void SelectChange()
+    {
+        IsEnabled = SelectValue.Count > 0;
+    }
+
+}
